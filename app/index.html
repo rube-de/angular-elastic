@@ -29,50 +29,7 @@
 			<h3 class="text-muted">Movie Mania</h3>        
       </div>
 	
-    <div ng-controller="MainCtrl" class="row">
-		<div class="col-xs-7">
-			<h2>Movies</h2>
-			<div ng-repeat="movie in movies" style="clear: both;">
-				<h3 ng-bind="movie.title"></h3>
-				<img src="{{movie.image}}" style="float: left; width: 80px; margin-right: 10px;"/>
-				<p style="font-size: 0.8em; font-style: italic;" ng-bind="movie.category">
-				<p ng-bind="movie.description">
-			</div>
-		</div>
-		<div class="col-xs-1">
-			<span class="glyphicon glyphicon-menu-right" ng-show="closed" ng-click="closed=false"></span>
-			<span class="glyphicon glyphicon-menu-down" ng-hide="closed" ng-click="closed=true"></span>
-		</div>
-		<div class="col-xs-4" ng-hide="closed">
-			<h2>Add</h2>
-			<div class="form-group">
-				<label>Title</label>
-				<input class="form-control" ng-keyup="validateTitle()" placeholder="Enter title" ng-model="movie.title">
-			</div>
-			<div class="form-group">
-				<label>Image</label>
-				<input class="form-control" placeholder="Image" ng-model="movie.image">
-				<div ng-show="movie.image.length > 7 && movie.image.substr(-3) === 'png'">
-					<h4>Preview</h4>
-					<img ng-src="{{movie.image}}">
-				</div>
-			</div>
-			<div class="form-group">
-				<label>Category</label>
-				<select class="form-control" ng-change="checkCategorySelected()" ng-model="movie.category">
-					<option value="">-</option>
-					<option value="Epic">Epic</option>
-					<option value="Awesome">Awesome</option>
-					<option value="Average">Average</option>
-				</select>
-			</div>
-			<div class="form-group">
-				<label>Description</label>
-				<textarea class="form-control" ng-blur="checkDescription()" ng-model="movie.description"></textarea>
-			</div>
-			<button class="btn btn-info" ng-click="addMovie()" ng-show="isValid()">Add</button>
-		</div>
-	</div>
+    <div ng-view=""></div>
 	
 	
     </div>
@@ -108,6 +65,8 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
+		<script src="scripts/controllers/movie.js"></script>
+        <script src="scripts/controllers/contact.js"></script>
         <!-- endbuild -->
 </body>
 </html>
