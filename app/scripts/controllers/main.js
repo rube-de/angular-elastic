@@ -11,9 +11,18 @@ angular.module('movieManiaApp')
   .controller('MainCtrl', function ($scope, $location, $http) {
 	  $scope.title = 'Thanks for bla';
 	  
-	  $http.get('/movies.json').then(function(data){
+	  $http.get('/movies.json')
+	  .then(function(data, status, headers, config){
 		  console.debug('http get: ' + JSON.stringify(data));
 		  $scope.movies = data.data;
+	  })
+	  .catch(function(data, status, headers, config){
+		  console.error(data, status, headers, config);
+		  if(status === 404){
+			  window.alert('not found');
+		  }else{
+			  window.alert('unknown error');
+		  }
 	  });
 	
 		$scope.closed = false;
