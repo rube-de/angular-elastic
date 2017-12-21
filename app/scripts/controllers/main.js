@@ -11,22 +11,25 @@ angular.module('movieManiaApp')
   .controller('MainCtrl', function ($scope, $location, $http) {
 	  $scope.title = 'Thanks for bla';
 	  
-	  $http.get('/movies.json')
-	  .then(function(data, status, headers, config){
-		  console.debug('http get: ' + JSON.stringify(data));
-		  $scope.movies = data.data;
+	  var url = '/movies.json';
+	  
+	  $http.get(url)
+	  .then(function(response){
+		  console.debug('http get: ' + response.data);
+		  $scope.movies = response.data;
 	  })
-	  .catch(function(data, status, headers, config){
-		  console.error(data, status, headers, config);
-		  if(status === 404){
+	  .catch(function(response){
+		  console.error('error on get movie' + response);
+		  if(response.status === 404){
 			  window.alert('not found');
 		  }else{
 			  window.alert('unknown error');
 		  }
 	  });
 	
+	
 		$scope.closed = false;
-				
+		
 		$scope.movie ={
 			title: '',
 			description: '',
